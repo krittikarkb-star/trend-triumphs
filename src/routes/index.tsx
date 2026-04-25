@@ -1,10 +1,10 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { useMemo, useState } from "react";
 import {
   ResponsiveContainer, AreaChart, Area, XAxis, YAxis, Tooltip, CartesianGrid,
   BarChart, Bar, PieChart, Pie, Cell, Legend,
 } from "recharts";
-import { TrendingUp, ShoppingBag, Receipt, Package, Sparkles, Download, Filter } from "lucide-react";
+import { TrendingUp, ShoppingBag, Receipt, Package, Sparkles, Download, Filter, Brain } from "lucide-react";
 import salesData from "@/data/sales.json";
 import { KpiCard } from "@/components/dashboard/KpiCard";
 import { Slicer } from "@/components/dashboard/Slicer";
@@ -119,14 +119,23 @@ function Dashboard() {
                 Real-time business performance across products, categories, channels and regions for India's leading cosmetics commerce.
               </p>
             </div>
-            <a
-              href="/Nykaa_Sales_Dashboard.xlsx"
-              download
-              className="inline-flex items-center gap-2 self-start rounded-xl bg-white/95 px-4 py-2.5 text-sm font-semibold text-primary shadow-[var(--shadow-glow)] transition-transform hover:scale-105"
-            >
-              <Download className="h-4 w-4" />
-              Download Excel Report
-            </a>
+            <div className="flex flex-col gap-2 self-start sm:flex-row">
+              <Link
+                to="/ml"
+                className="inline-flex items-center gap-2 rounded-xl border border-white/30 bg-white/10 px-4 py-2.5 text-sm font-semibold text-white backdrop-blur-md transition-transform hover:scale-105 hover:bg-white/20"
+              >
+                <Brain className="h-4 w-4" />
+                ML Insights
+              </Link>
+              <a
+                href="/Nykaa_Sales_Dashboard.xlsx"
+                download
+                className="inline-flex items-center gap-2 rounded-xl bg-white/95 px-4 py-2.5 text-sm font-semibold text-primary shadow-[var(--shadow-glow)] transition-transform hover:scale-105"
+              >
+                <Download className="h-4 w-4" />
+                Download Excel
+              </a>
+            </div>
           </div>
         </div>
       </header>
