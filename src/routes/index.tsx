@@ -181,7 +181,7 @@ function Dashboard() {
                 <YAxis tick={{ fill: "oklch(0.48 0.04 320)", fontSize: 12 }} stroke="oklch(0.92 0.015 340)" tickFormatter={(v) => inr(v)} />
                 <Tooltip
                   contentStyle={{ background: "white", border: "1px solid oklch(0.92 0.015 340)", borderRadius: 12, fontSize: 12 }}
-                  formatter={(v: number) => [inrFull(v), "Revenue"]}
+                  formatter={(v) => [inrFull(Number(v)), "Revenue"] as [string, string]}
                 />
                 <Area type="monotone" dataKey="revenue" stroke="oklch(0.62 0.24 0)" strokeWidth={2.5} fill="url(#rev)" />
               </AreaChart>
@@ -202,7 +202,7 @@ function Dashboard() {
                   <YAxis type="category" dataKey="name" tick={{ fill: "oklch(0.22 0.05 320)", fontSize: 11 }} width={140} />
                   <Tooltip
                     contentStyle={{ background: "white", border: "1px solid oklch(0.92 0.015 340)", borderRadius: 12, fontSize: 12 }}
-                    formatter={(v: number) => [inrFull(v), "Revenue"]}
+                    formatter={(v) => [inrFull(Number(v)), "Revenue"] as [string, string]}
                   />
                   <Bar dataKey="revenue" radius={[0, 8, 8, 0]}>
                     {top10Products.map((_, i) => (
@@ -225,7 +225,7 @@ function Dashboard() {
                       <Cell key={i} fill={PALETTE[i % PALETTE.length]} />
                     ))}
                   </Pie>
-                  <Tooltip formatter={(v: number) => inrFull(v)} contentStyle={{ borderRadius: 12, fontSize: 12 }} />
+                  <Tooltip formatter={(v) => inrFull(Number(v))} contentStyle={{ borderRadius: 12, fontSize: 12 }} />
                 </PieChart>
               </ResponsiveContainer>
             </div>
@@ -255,7 +255,7 @@ function Dashboard() {
                   <XAxis dataKey="name" tick={{ fill: "oklch(0.22 0.05 320)", fontSize: 12 }} />
                   <YAxis yAxisId="left" tick={{ fill: "oklch(0.48 0.04 320)", fontSize: 11 }} tickFormatter={(v) => inr(v)} />
                   <YAxis yAxisId="right" orientation="right" tick={{ fill: "oklch(0.48 0.04 320)", fontSize: 11 }} />
-                  <Tooltip contentStyle={{ borderRadius: 12, fontSize: 12 }} formatter={(v: number, n) => n === "revenue" ? [inrFull(v), "Revenue"] : [num(v), "Orders"]} />
+                  <Tooltip contentStyle={{ borderRadius: 12, fontSize: 12 }} formatter={(v, n) => (n === "revenue" ? [inrFull(Number(v)), "Revenue"] : [num(Number(v)), "Orders"]) as [string, string]} />
                   <Legend wrapperStyle={{ fontSize: 12 }} />
                   <Bar yAxisId="left" dataKey="revenue" fill="oklch(0.62 0.24 0)" radius={[8, 8, 0, 0]} />
                   <Bar yAxisId="right" dataKey="orders" fill="oklch(0.78 0.16 80)" radius={[8, 8, 0, 0]} />
